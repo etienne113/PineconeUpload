@@ -196,19 +196,18 @@ async def modify_task_and_task_list(task, new_title):
 @cl.on_chat_start
 async def start():
     task_list = cl.TaskList()
-    cl.user_session.set('task_list', task_list)
-    await cl.Message(
-        content="Welcome to this space, you can use this to store your docs into your Pinecone index and ask questions about them!").send()
-    departments_selected = False
-    cl.user_session.set('departments_selected', departments_selected)
-    file = None
-
     await task_list_exec(task_list, 'Running...', 0, task1, True, cl.TaskStatus.RUNNING)
     await task_list_exec(task_list, 'Adding new task...', 2, task2, True, cl.TaskStatus.READY)
     await task_list_exec(task_list, 'Adding new task...', 2, task3, True, cl.TaskStatus.READY)
     await task_list_exec(task_list, 'Adding new task...', 2, task4, True, cl.TaskStatus.READY)
     await task_list_exec(task_list, 'Adding new task...', 2, task5, True, cl.TaskStatus.READY)
     await task_list_exec(task_list, 'Running...', 0, task1, False, cl.TaskStatus.RUNNING)
+    cl.user_session.set('task_list', task_list)
+    await cl.Message(
+        content="Welcome to this space, you can use this to store your docs into your Pinecone index and ask questions about them!").send()
+    departments_selected = False
+    cl.user_session.set('departments_selected', departments_selected)
+    file = None
 
     while file is None:
         file = await cl.AskFileMessage(
