@@ -132,14 +132,14 @@ def process_files(files):
         if file.type == "application/pdf":
             # Handle PDF files
             Loader = PyPDFLoader
-            splitter = RecursiveCharacterTextSplitter(chunk_size=1000, chunk_overlap=300)
+            splitter = RecursiveCharacterTextSplitter(chunk_size=900, chunk_overlap=450)
         elif file.type == "text/plain":
             # Handle  text files
             Loader = TextLoader
-            splitter = RecursiveCharacterTextSplitter(chunk_size=800, chunk_overlap=150)
+            splitter = RecursiveCharacterTextSplitter(chunk_size=900, chunk_overlap=450)
         elif file.type == "text/csv":
             Loader = CSVLoader
-            splitter = RecursiveCharacterTextSplitter(chunk_size=800, chunk_overlap=150)
+            splitter = RecursiveCharacterTextSplitter(chunk_size=900, chunk_overlap=450)
         else:
             raise ValueError("Unsupported file type: " + file.type)
 
